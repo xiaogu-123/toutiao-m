@@ -5,7 +5,12 @@
       <!-- 基本信息 -->
       <div class="base-info">
         <div class="left">
-          <van-image class="avatar" :src="userInfo.photo" round fit="cover" />
+          <van-image
+            class="avatar"
+            :src="userInfo.photo || avatar"
+            round
+            fit="cover"
+          />
           <span class="name">{{ userInfo.name }}</span>
         </div>
         <div class="right">
@@ -58,6 +63,7 @@
     <van-cell title="用户反馈" is-link url="" />
     <van-cell title="小智同学" is-link url="" />
     <van-cell class="mb-9" title="系统设置" is-link url="" />
+    <!-- 退出 -->
     <van-cell
       v-if="user"
       class="logout-cell"
@@ -71,6 +77,7 @@
 <script>
 import { mapState } from 'vuex'
 import { getUserInfo } from '@/api/user'
+import avatar from '@/assets/avatar.png'
 
 export default {
   name: 'MyIndex',
@@ -78,7 +85,8 @@ export default {
   props: {},
   data () {
     return {
-      userInfo: {} // 用户信息
+      userInfo: {}, // 用户信息
+      avatar
     }
   },
   computed: {
